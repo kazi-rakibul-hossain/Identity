@@ -16,7 +16,7 @@
     <EmbeddedResource Remove="wwwroot/**/LICENSE*" />
     <None Remove="wwwroot/**/.bower.json" />
     <None Remove="wwwroot/**/LICENSE*" />
-    <None Include="THIRD-PARTY-NOTICES" Pack="true" PackagePath="/"/>
+    <None Include="THIRD-PARTY-NOTICES" Pack="true" PackagePath="/" />
   </ItemGroup>
     
   <ItemGroup>
@@ -32,10 +32,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
-      <_parameter1>Microsoft.AspNetCore.Mvc.AdditionalReference</_parameter1>
-      <_parameter2>$(RazorTargetName).dll,false</_parameter2>
-    </AssemblyAttribute>
 
     <RazorAssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition="'$(BuildNumber)' != ''">
       <_Parameter1>BuildNumber</_Parameter1>
