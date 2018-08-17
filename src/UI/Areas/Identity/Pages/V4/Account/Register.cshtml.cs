@@ -12,7 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal
+namespace Microsoft.AspNetCore.Identity.UI.Pages.V4.Account.Internal
+
 {
     [AllowAnonymous]
     [IdentityDefaultUI(typeof(RegisterModel<>))]

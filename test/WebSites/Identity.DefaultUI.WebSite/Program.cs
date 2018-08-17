@@ -13,6 +13,14 @@ namespace Identity.DefaultUI.WebSite
     {
         public static void Main(string[] args)
         {
+            System.Console.WriteLine($"PROCESS ID: {System.Diagnostics.Process.GetCurrentProcess().Id}");
+            System.Console.Out.Flush();
+            while (!System.Diagnostics.Debugger.IsAttached)
+            {
+                System.Threading.Thread.Sleep(1000);
+            }
+            System.Diagnostics.Debugger.Break();
+
             CreateWebHostBuilder(args).Build().Run();
         }
 

@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Microsoft.AspNetCore.Identity.UI.Pages.Account.Manage.Internal
+namespace Microsoft.AspNetCore.Identity.UI.Pages.V3.Account.Manage.Internal
+
 {
     [IdentityDefaultUI(typeof(SetPasswordModel<>))]
     public abstract class SetPasswordModel : PageModel

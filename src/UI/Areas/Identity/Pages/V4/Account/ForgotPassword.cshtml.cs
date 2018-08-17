@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal
+namespace Microsoft.AspNetCore.Identity.UI.Pages.V4.Account.Internal
+
 {
     [AllowAnonymous]
     [IdentityDefaultUI(typeof(ForgotPasswordModel<>))]

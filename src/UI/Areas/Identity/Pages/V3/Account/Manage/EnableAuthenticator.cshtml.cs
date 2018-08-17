@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace Microsoft.AspNetCore.Identity.UI.Pages.Account.Manage.Internal
+namespace Microsoft.AspNetCore.Identity.UI.Pages.V3.Account.Manage.Internal
+
 {
     [IdentityDefaultUI(typeof(EnableAuthenticatorModel<>))]
     public class EnableAuthenticatorModel : PageModel

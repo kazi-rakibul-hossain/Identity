@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace Microsoft.AspNetCore.Identity.UI.Pages.Account.Manage.Internal
+namespace Microsoft.AspNetCore.Identity.UI.Pages.V3.Account.Manage.Internal
+
 {
     [IdentityDefaultUI(typeof(DownloadPersonalDataModel<>))]
     public abstract class DownloadPersonalDataModel : PageModel

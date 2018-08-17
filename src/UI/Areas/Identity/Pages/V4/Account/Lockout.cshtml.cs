@@ -4,7 +4,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal
+namespace Microsoft.AspNetCore.Identity.UI.Pages.V4.Account.Internal
+
 {
     [AllowAnonymous]
     public class LockoutModel : PageModel

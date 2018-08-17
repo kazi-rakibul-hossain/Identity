@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace Microsoft.AspNetCore.Identity.UI.Pages.Account.Manage.Internal
+namespace Microsoft.AspNetCore.Identity.UI.Pages.V4.Account.Manage.Internal
+
 {
     [IdentityDefaultUI(typeof(TwoFactorAuthenticationModel<>))]
     public abstract class TwoFactorAuthenticationModel : PageModel

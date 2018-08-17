@@ -8,6 +8,10 @@
     <PackageTags>aspnetcore;identity;membership;razorpages</PackageTags>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
     <ProvideApplicationPartFactoryAttributeTypeName>Microsoft.AspNetCore.Mvc.ApplicationParts.NullApplicationPartFactory, Microsoft.AspNetCore.Mvc.Core</ProvideApplicationPartFactoryAttributeTypeName>
+    <RazorCompileOnBuild>false</RazorCompileOnBuild>
+    <RazorCompileOnPublish>false</RazorCompileOnPublish>
+    <NoWarn>$(NoWarn);MVC1000</NoWarn>
+    <EnableDefaultRazorGenerateItems>false</EnableDefaultRazorGenerateItems>
   </PropertyGroup>
 
   <ItemGroup>
@@ -48,13 +52,49 @@
     <RazorCompile Include="$(GeneratedCommitHashAttributeFile)" />
     <RazorCompile Include="$(GeneratedInternalAspNetCoreAttributeFile)" />
   </ItemGroup>
-  
-  <Target Name="VerifyBuildOutputs" AfterTargets="Build">
-    <PropertyGroup>
-      <ExpectedOutputFile>$(OutputPath)$(RazorTargetName).dll</ExpectedOutputFile>
-    </PropertyGroup>
 
-    <Error Text="Unable to find precompiled view file $(ExpectedOutputFile)" Condition="!Exists('$(ExpectedOutputFile)')" />
+  <Target Name="BuildRazorViews" AfterTargets="Build">
+    <ItemGroup>
+      <UIFrameworkVersionMoniker Include="V3" />
+      <UIFrameworkVersionMoniker Include="V4" />
+    </ItemGroup>
+
+    <MSbuild Projects="$(MSBuildThisFile)" 
+             Targets="BuildForUI" 
+             Properties="
+             RazorCompileOnBuild=true;
+              UIFrameworkVersion=%(UIFrameworkVersionMoniker.Identity);
+              IntermediateOutputPath=$(IntermediateOutputPath)\%(UIFrameworkVersionMoniker.Identity)\" />
+  </Target>
+
+  <Target Name="SetupRazorInputs">
+    <ItemGroup>
+      <_RazorGenerate 
+        Include="Areas\Identity\Pages\$(UIFrameworkVersion)\**\*.cshtml" />
+
+      <RazorGenerate 
+        Include="@(_RazorGenerate)" 
+        Link="Areas\Identity\Pages\%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+
+    <PropertyGroup>
+      <RazorTargetName>$(TargetName).Views.$(UIFrameworkVersion)</RazorTargetName>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="BuildForUI" DependsOnTargets="SetupRazorInputs;RazorCompile;CopyFilesToOutputDirectory">
+    
+    
+  </Target>
+
+  <Target Name="VerifyBuildOutputs" AfterTargets="BuildRazorViews">
+    <ItemGroup>
+      <ExpectedOutputFile Include="$(OutputPath)$(RazorTargetName).V3.dll" />
+      <ExpectedOutputFile Include="$(OutputPath)$(RazorTargetName).V4.dll" />
+    </ItemGroup>
+
+    <Error Text="Unable to find precompiled view file %(ExpectedOutputFile.Identity)" 
+           Condition="!Exists('%(ExpectedOutputFile.Identity)')" />
   </Target>
     
 </Project>

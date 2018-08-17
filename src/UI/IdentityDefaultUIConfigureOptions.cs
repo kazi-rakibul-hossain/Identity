@@ -21,12 +21,16 @@ namespace Microsoft.AspNetCore.Identity.UI
     {
         private const string IdentityUIDefaultAreaName = "Identity";
 
-        public IdentityDefaultUIConfigureOptions(IHostingEnvironment environment)
+        public IdentityDefaultUIConfigureOptions(
+            IHostingEnvironment environment,
+            IOptions<DefaultUIOptions> uiOptions)
         {
             Environment = environment;
+            UiOptions = uiOptions;
         }
 
         public IHostingEnvironment Environment { get; }
+        public IOptions<DefaultUIOptions> UiOptions { get; }
 
         public void PostConfigure(string name, RazorPagesOptions options)
         {
@@ -60,6 +64,9 @@ namespace Microsoft.AspNetCore.Identity.UI
             }
 
             options.FileProvider = options.FileProvider ?? Environment.WebRootFileProvider;
+
+            var basePath = UiOptions.Value.UIFramework == UIFramework.Bootstrap3 ? "wwwroot/V3" :
+                "wwwroot/V4";
 
             // Add our provider
             var filesProvider = new ManifestEmbeddedFileProvider(GetType().Assembly, "wwwroot");
