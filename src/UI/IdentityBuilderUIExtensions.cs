@@ -87,7 +87,7 @@ namespace Microsoft.AspNetCore.Identity
                         var assemblyName = kvp.Key.GetName().Name;
                         if (!IsAssemblyForFramework(selectedFrameworkAssembly, assemblyName))
                         {
-                            RemoveParts(partManager, kvp.Value, assemblyName);
+                            RemoveParts(partManager, kvp.Value);
                         }
                         else
                         {
@@ -100,13 +100,15 @@ namespace Microsoft.AspNetCore.Identity
 
                     void RemoveParts(
                         ApplicationPartManager manager,
-                        IEnumerable<ApplicationPart> partsToRemove,
-                        string assemblyName)
+                        IEnumerable<ApplicationPart> partsToRemove)
                     {
                         for (var i = 0; i < manager.ApplicationParts.Count; i++)
                         {
                             var part = manager.ApplicationParts[i];
-                            if (partsToRemove.Any(p => string.Equals(p.Name, assemblyName, StringComparison.OrdinalIgnoreCase)))
+                            if (partsToRemove.Any(p => string.Equals(
+                                    p.Name,
+                                    part.Name,
+                                    StringComparison.OrdinalIgnoreCase)))
                             {
                                 manager.ApplicationParts.Remove(part);
                             }

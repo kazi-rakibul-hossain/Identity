@@ -3,5 +3,5 @@
 
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
-[assembly: RelatedAssembly("Microsoft.AspNetCore.Identity.UI.Views.V3.dll")]
-[assembly: RelatedAssembly("Microsoft.AspNetCore.Identity.UI.Views.V4.dll")]
+[assembly: RelatedAssembly("Microsoft.AspNetCore.Identity.UI.Views.V3")]
+[assembly: RelatedAssembly("Microsoft.AspNetCore.Identity.UI.Views.V4")]
