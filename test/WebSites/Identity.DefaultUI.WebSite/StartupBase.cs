@@ -38,7 +38,6 @@ namespace Identity.DefaultUI.WebSite
                 ));
 
             services.AddDefaultIdentity<TUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<TContext>();
 

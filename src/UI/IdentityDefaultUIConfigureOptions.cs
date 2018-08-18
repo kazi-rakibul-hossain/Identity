@@ -69,7 +69,7 @@ namespace Microsoft.AspNetCore.Identity.UI
                 "wwwroot/V4";
 
             // Add our provider
-            var filesProvider = new ManifestEmbeddedFileProvider(GetType().Assembly, "wwwroot");
+            var filesProvider = new ManifestEmbeddedFileProvider(GetType().Assembly, basePath);
             options.FileProvider = new CompositeFileProvider(options.FileProvider, filesProvider);
         }
 
